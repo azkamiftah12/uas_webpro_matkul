@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -30,35 +35,6 @@
   </style>
 </head>
 
-<?php
-include('connection.php');
-$rand = rand(9999, 1000);
-if (isset($_REQUEST['login'])) {
-  $username = $_REQUEST['username'];
-  $pwd = $_REQUEST['pwd'];
-  $captcha = $_REQUEST['captcha'];
-  $captcharandom = $_REQUEST['captcha-rand'];
-  if ($captcha != $captcharandom) { ?>
-    <script type="text/javascript">
-      alert("Invalid captcha value");
-    </script>
-    <?php
-  } else {
-    $select_query = mysqli_query($connection, "select * from admin where username='$username' and password='$pwd'");
-    $result = mysqli_num_rows($select_query);
-    if ($result > 0) {
-      header("Location: admin.php");
-      exit;
-    } else {
-      ?>
-      <script type="text/javascript">
-        alert("Invalid username or password");
-      </script>
-      <?php
-    }
-  }
-}
-?>
 
 <body>
   <div class="global-container justify-content-center">
@@ -66,6 +42,39 @@ if (isset($_REQUEST['login'])) {
       <div class="card-body p-3">
         <h1 class="card-title text-center text-capitalize fw-bolder mb-2" style="font-size: 42pt">Login</h1>
         <div class="card-text p-5" style="background-color: white; color: #073b4c;">
+
+          <?php
+          require('connection.php');
+          $rand = rand(9999, 1000);
+          if (isset($_REQUEST['login'])) {
+            $username = $_REQUEST['username'];
+            $pwd = $_REQUEST['pwd'];
+            $captcha = $_REQUEST['captcha'];
+            $captcharandom = $_REQUEST['captcha-rand'];
+            if ($captcha != $captcharandom) {
+              ?>
+              <div class="col-lg-4 text-center">
+                <h5 style="color: red;">Invalid captcha!! </h5>
+              </div>
+              <?php
+            } else {
+              $select_query = mysqli_query($connection, "select * from admin where username='$username' and password='$pwd'");
+              $result = mysqli_num_rows($select_query);
+              if ($result == 1) {
+                $_SESSION["Login"] = true;
+                header("Location: admin.php");
+                exit;
+              } else {
+                ?>
+                <div class="col-lg-6 text-center">
+                  <h5 style="color: red;">Invalid Username & Password!! </h5>
+                </div>
+                <?php
+              }
+            }
+          }
+          ?>
+
           <form method="post">
             <div class="username form-group">
               <label>Username</label>

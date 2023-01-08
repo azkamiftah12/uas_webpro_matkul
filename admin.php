@@ -1,5 +1,12 @@
 <?php
-include 'connection.php';
+session_start();
+
+if (!isset($_SESSION["Login"])) {
+    header("Location: index.php");
+    exit;
+}
+
+require('connection.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -109,7 +116,7 @@ include 'connection.php';
                 <a class="btn btn-warning my-3" style="width: 20rem;" href="addpage.php">Add Jadwal</a>
             </div>
             <div class="col-lg-12 text-center mb-5">
-                <a class="btn btn-danger btn-outline-danger text-light" style="width: 20rem;" href=" index.php">Log
+                <a class="btn btn-danger btn-outline-danger text-light" style="width: 20rem;" href=" logout.php">Log
                     out</a>
             </div>
         </div>
