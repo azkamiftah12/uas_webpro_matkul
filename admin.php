@@ -24,9 +24,9 @@ include 'connection.php';
 
     //create an array
     $array = array();
-    $emparray = [];
+    $isiarray = [];
     while ($row = mysqli_fetch_assoc($result)) {
-        $emparray[] = $row;
+        $isiarray[] = $row;
     }
 
     ?>
@@ -61,44 +61,43 @@ include 'connection.php';
                             <?php
                             $no = 1;
                             $data = mysqli_query($connection, "select * from mahasiswa");
-                            // print_r($emparray);
-                            foreach ($emparray as $data => $d) {
-                            ?>
-                            <tr>
-                                <td>
-                                    <?php echo $no++; ?>
-                                </td>
-                                <td>
-                                    <?php echo $d['hari']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $d['slotwaktu']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $d['matkul']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $d['dosen']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $d['ruang']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $d['jj']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $d['TA']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $d['semester']; ?>
-                                </td>
-                                <td>
-                                    <a class="btn btn-warning me-3" href="edit.php?id=<?php echo $d['id']; ?>">EDIT</a>
-                                    <a class="btn btn-danger" href="delete.php?id=<?php echo $d['id']; ?>"
-                                        onclick="return confirm('yakin ingin menghapus mata kuliah?')">HAPUS</a>
-                                </td>
-                            </tr>
-                            <?php
+                            foreach ($isiarray as $data => $d) {
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $no++; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $d['hari']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $d['slotwaktu']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $d['matkul']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $d['dosen']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $d['ruang']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $d['jj']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $d['TA']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $d['semester']; ?>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning me-3" href="edit.php?id=<?php echo $d['id']; ?>">EDIT</a>
+                                        <a class="btn btn-danger" href="delete.php?id=<?php echo $d['id']; ?>"
+                                            onclick="return confirm('yakin ingin menghapus mata kuliah?')">HAPUS</a>
+                                    </td>
+                                </tr>
+                                <?php
                             }
                             ?>
                         </table>
