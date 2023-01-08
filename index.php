@@ -98,8 +98,8 @@ session_start();
             <button type="submit" class="submit btn btn-success my-1 form-control form-control-sm" name="login"
               id="login">Submit</button>
 
-            <a class="btn btn-warning mt-3 form-control form-control-sm" href="liatjadwal.php"
-              style="color: white;">Login as Guest</a>
+            <a class="btn btn-warning mt-3 form-control form-control-sm" href="guest.php" style="color: white;">Login as
+              Guest</a>
 
           </form>
         </div>
