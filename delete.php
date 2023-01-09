@@ -1,6 +1,6 @@
 <?php
 //koneksi database
-include 'connection.php';
+include 'conn.php';
 
 //menangkap data id yang dikirim dari url
 $id = $_GET['id'];

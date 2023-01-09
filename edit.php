@@ -21,7 +21,7 @@ if (!isset($_SESSION["Login"])) {
 </head>
 
 <?php
-require('connection.php');
+require('conn.php');
 $id = $_GET['id'];
 $data = mysqli_query($connection, "select * from mahasiswa where id='$id'");
 while ($d = mysqli_fetch_array($data)) {

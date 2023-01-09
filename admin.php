@@ -6,7 +6,7 @@ if (!isset($_SESSION["Login"])) {
     exit;
 }
 
-require('connection.php');
+require('conn.php');
 ?>
 <!doctype html>
 <html lang="en">

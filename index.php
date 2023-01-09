@@ -44,7 +44,7 @@ session_start();
         <div class="card-text p-5" style="background-color: white; color: #073b4c;">
 
           <?php
-          require('connection.php');
+          require('conn.php');
           $rand = rand(9999, 1000);
           if (isset($_REQUEST['login'])) {
             $username = $_REQUEST['username'];

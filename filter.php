@@ -2,7 +2,7 @@
 
 session_start();
 
-require 'connection.php';
+require 'conn.php';
 $keyword = $_GET['keyword'];
 $query = "SELECT * FROM mahasiswa WHERE hari LIKE '%$keyword%' 
 OR  slotwaktu LIKE '%$keyword%' 

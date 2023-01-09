@@ -1,6 +1,6 @@
 <?php
 //koneksi database
-include 'connection.php';
+include 'conn.php';
 
 //menangkap data yang dikirim  dari form 
 $hari = $_POST['hari'];
