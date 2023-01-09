@@ -25,9 +25,20 @@ require('connection.php');
 <body style="background-color: #073b4c;">
 
     <?php
-    //fetch table rows from mysql db
-    $sql = "select * from mahasiswa";
-    $result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
+    $jumlahItemPerPage = 20;
+    $resultpaginasi = mysqli_query($connection, "select * from mahasiswa");
+    $jumlahItem = mysqli_num_rows($resultpaginasi);
+    $jumlahPage = ceil($jumlahItem / $jumlahItemPerPage);
+    if (isset($_GET["page"])) {
+        $pageAktiv = $_GET["page"];
+    } else {
+        $pageAktiv = 1;
+    }
+    $itemAwal = ($jumlahItemPerPage * $pageAktiv) - $jumlahItemPerPage;
+
+    //query(ambil data)
+    $query = "select * from mahasiswa limit $itemAwal, $jumlahItemPerPage";
+    $result = mysqli_query($connection, $query) or die("Error in Selecting " . mysqli_error($connection));
 
     //create an array
     $array = array();
@@ -44,14 +55,44 @@ require('connection.php');
                     <h1 class="text-capitalize fw-bolder " style="font-size: 42pt">Jadwal Mata Kuliah</h1>
                 </div>
                 <form action="" method="post" style="background-color: white;">
-                    <div class="text-center my-4">
+                    <div class="text-center my-5">
                         <input type="text" name="keyword" class="text-center" size="40" autofocus placeholder="search"
                             autocomplete="off" id="keyword">
-                        <br>
-                        <br>
                     </div>
-                    <div id="container">
+                    <div>
+                        <?php
+                        $arrowleft = 0;
+                        if ($pageAktiv <= 1) {
+                            $arrowleft = $pageAktiv;
+                        } else {
+                            $arrowleft = $pageAktiv - 1;
+                        }
 
+                        $arrowright = 0;
+                        if ($pageAktiv >= $jumlahPage) {
+                            $arrowright = $pageAktiv;
+                        } else {
+                            $arrowright = $pageAktiv + 1;
+                        }
+                        ?>
+                        <a href="?page=<?=
+                            $arrowleft ?>" class="btn btn-info">&lt;</a>
+
+                        <?php for ($i = 1; $i <= $jumlahPage; $i++): ?>
+                            <?php if ($i == $pageAktiv): ?>
+                                <a href="?page=<?= $i; ?>" class="btn btn-warning">
+                                    <?= $i; ?>
+                                </a>
+                            <?php else: ?>
+                                <a href="?page=<?= $i; ?>" class="btn btn-info">
+                                    <?= $i; ?>
+                                </a>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                        <a href="?page=<?= $arrowright ?>" class="btn btn-info">&gt;</a>
+                    </div>
+
+                    <div id="container" class="mt-5">
                         <table class="border table table-striped">
                             <tr>
                                 <th>NO</th>

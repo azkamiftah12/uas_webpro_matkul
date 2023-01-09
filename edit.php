@@ -20,20 +20,6 @@ if (!isset($_SESSION["Login"])) {
         crossorigin="anonymous"></script>
 </head>
 
-<style>
-    .editt {
-        text-align: center;
-        margin: auto;
-        background-color: #F5D8D8;
-        width: 15%;
-    }
-
-    td {
-        font-size: 18px;
-        padding-left: auto;
-    }
-</style>
-
 <?php
 require('connection.php');
 $id = $_GET['id'];
