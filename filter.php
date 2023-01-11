@@ -70,18 +70,18 @@ $mahasiswa = mysqli_query($connection, $query);
                 <td>
                     <?php echo $d['semester']; ?>
                 </td>
-                <td>
-                    <?php
-                    if (isset($_SESSION["Login"])) { ?>
+                <?php
+                if (isset($_SESSION["Login"])) { ?>
+                    <td>
                         <a class="btn btn-warning me-3" href="edit.php?id=<?php echo $d['id']; ?>">EDIT</a>
                         <a class="btn btn-danger" href="delete.php?id=<?php echo $d['id']; ?>"
                             onclick="return confirm('yakin ingin menghapus mata kuliah?')">HAPUS</a>
-                        <?php
-                    }
-                    ;
-                    ?>
 
-                </td>
+                    </td>
+                    <?php
+                }
+                ;
+                ?>
             </tr>
             <?php
         }
